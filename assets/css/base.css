@@ -1,0 +1,459 @@
+/* ==========================================================================
+   base.css — dweep-portfolio
+   Reset, document defaults, the typographic scale, and the layout
+   primitives every section is built from.
+   No component lives here (components.css) and no section-specific layout
+   lives here (pages.css).
+   Every value below is a token. If you need a new number, add it to
+   tokens.css first.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. RESET
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* Anchor links must not land underneath the sticky nav. */
+  scroll-padding-top: calc(var(--nav-h) + var(--space-md));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--paper);
+  color: var(--on-paper);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--track-body);
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  /* 320px floor: nothing is allowed to push the page sideways. */
+  overflow-x: hidden;
+}
+
+img,
+picture,
+svg,
+canvas,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+button {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+/* Prose lists (accordion bodies, about copy) keep their markers. */
+.prose ul,
+.prose ol {
+  padding-inline-start: var(--space-md);
+  list-style: revert;
+}
+
+hr {
+  border: 0;
+  border-block-start: var(--rule) solid currentColor;
+}
+
+summary { cursor: pointer; }
+
+/* --------------------------------------------------------------------------
+   2. TYPE
+   font-weight and font-stretch (not font-variation-settings) so the system
+   fallback still reads as a headline if Archivo never arrives.
+   -------------------------------------------------------------------------- */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-heading);
+  text-wrap: balance;
+}
+
+h1,
+.t-display {
+  font-size: var(--fs-display);
+  font-weight: var(--wght-display);
+  font-stretch: var(--wdth-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--track-display);
+  word-spacing: var(--track-word-display);
+  text-transform: uppercase;
+}
+
+h2,
+.t-h2 {
+  font-size: var(--fs-h2);
+  font-weight: var(--wght-display);
+  font-stretch: var(--wdth-display);
+  word-spacing: var(--track-word-display);
+  text-transform: uppercase;
+}
+
+h3,
+.t-h3 {
+  font-size: var(--fs-h3);
+  font-weight: var(--wght-subhead);
+  font-stretch: var(--wdth-subhead);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--track-heading);
+}
+
+/* Mono micro-label — the counterweight to the oversized display type.
+   Section eyebrows, skill categories, stack tags, dates. */
+.t-micro {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: var(--wght-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--track-micro);
+  text-transform: uppercase;
+}
+
+/* Wide-tracked wordmark, straight from matri6.com. */
+.t-wordmark {
+  font-family: var(--font-display);
+  font-size: var(--fs-wordmark);
+  font-weight: var(--wght-wordmark);
+  font-stretch: var(--wdth-wordmark);
+  letter-spacing: var(--track-wordmark);
+  line-height: var(--lh-tight);
+  text-transform: uppercase;
+  /* Tracking leaves a trailing gap after the last glyph; pull it back so
+     the lockup optically aligns with whatever sits above or beside it. */
+  margin-inline-end: calc(var(--track-wordmark) * -1);
+}
+
+/* Below 480px the tracking is what makes the lockup wide, not the type size,
+   so tightening it is what buys the room. Redefining the token rather than
+   the property keeps the compensating negative margin in step with it. */
+@media (max-width: 30rem) {
+  .t-wordmark {
+    --track-wordmark: var(--track-wordmark-tight);
+  }
+}
+
+/* Oversized ordinal marker — Projects and Process only. */
+.t-number {
+  font-family: var(--font-mono);
+  font-size: var(--fs-number);
+  font-weight: var(--wght-bold);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--track-body);
+}
+
+.t-lead {
+  font-size: var(--fs-lead);
+  line-height: var(--lh-tight);
+}
+
+.t-small { font-size: var(--fs-small); }
+
+p, li { text-wrap: pretty; }
+
+strong, b { font-weight: var(--wght-bold); }
+
+code, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+/* --------------------------------------------------------------------------
+   3. LINKS
+   Hover is a hard color BLOCK, never colored text: coral type on paper is
+   2.9:1 and would fail the moment someone moused over it.
+   -------------------------------------------------------------------------- */
+
+a {
+  color: inherit;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+  transition: background-color var(--dur-fast) var(--ease),
+              color var(--dur-fast) var(--ease);
+}
+
+a:hover {
+  background-color: var(--coral);
+  color: var(--on-coral);
+  text-decoration-color: var(--on-coral);
+}
+
+/* Coral on ink is 3.9:1 — the dark section swaps to sun (12.9:1 on ink). */
+.is-dark a:hover {
+  background-color: var(--sun);
+  color: var(--on-sun);
+}
+
+::selection {
+  background-color: var(--emerald);
+  color: var(--on-emerald);
+}
+
+/* --------------------------------------------------------------------------
+   4. FOCUS
+   One two-tone ring, defined once, visible on every background:
+   an ink outline sitting outside a paper spread. On paper the ink half
+   reads; on ink the paper half reads; on emerald / coral / sun / blue both
+   halves read. No per-section override anywhere in this repo.
+   -------------------------------------------------------------------------- */
+
+:focus { outline: none; }
+
+:focus-visible {
+  outline: var(--rule) solid var(--ink);
+  outline-offset: var(--rule);
+  box-shadow: 0 0 0 var(--rule) var(--paper);
+  border-radius: var(--radius);
+}
+
+/* Elements carrying the hard offset shadow must keep it while focused —
+   box-shadow is one property, so the ring is composed alongside it. */
+.offset:focus-visible {
+  box-shadow: 0 0 0 var(--rule) var(--paper),
+              var(--offset) var(--offset) 0 0 var(--ink);
+}
+
+.offset--sm:focus-visible {
+  box-shadow: 0 0 0 var(--rule) var(--paper),
+              var(--offset-sm) var(--offset-sm) 0 0 var(--ink);
+}
+
+.is-dark .offset:focus-visible {
+  box-shadow: 0 0 0 var(--rule) var(--paper),
+              var(--offset) var(--offset) 0 0 var(--paper);
+}
+
+.is-dark .offset--sm:focus-visible {
+  box-shadow: 0 0 0 var(--rule) var(--paper),
+              var(--offset-sm) var(--offset-sm) 0 0 var(--paper);
+}
+
+.skip-link {
+  position: fixed;
+  z-index: var(--z-skip);
+  inset-block-start: var(--space-2xs);
+  inset-inline-start: var(--space-2xs);
+  padding: var(--space-2xs) var(--space-sm);
+  background-color: var(--ink);
+  color: var(--on-ink);
+  border: var(--rule) solid var(--ink);
+  text-decoration: none;
+  transform: translateY(-250%);
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   5. LAYOUT PRIMITIVES
+   -------------------------------------------------------------------------- */
+
+/* Centred content column with the fluid page gutter. */
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Full-bleed horizontal band. Sections are bands; the rule between them is
+   the section divider called for in the design system. */
+.band {
+  padding-block: var(--section-y);
+  border-block-start: var(--rule-thick) solid var(--ink);
+}
+
+.band--flush { border-block-start: 0; }
+
+/* Inverted band. `.is-dark` is the hook every component uses to flip its
+   own colors — never re-declare a hex to go dark. */
+.is-dark {
+  background-color: var(--ink);
+  color: var(--on-ink);
+  border-block-start-color: var(--ink);
+}
+
+/* Vertical rhythm without per-element margins. */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.stack--tight { gap: var(--space-2xs); }
+.stack--loose { gap: var(--space-xl); }
+
+/* Horizontal group that wraps instead of overflowing at 320px. */
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.cluster--loose { gap: var(--space-md); }
+
+/* Auto-fitting grid. Children set nothing; the grid decides the columns. */
+.grid {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--col, 18rem), 100%), 1fr));
+}
+
+/* Readable prose column. */
+.measure { max-width: var(--measure); }
+
+/* Hard-offset silhouette — the flat "shadow" behind cards, buttons and the
+   hero object. No blur, ever. */
+.offset { box-shadow: var(--offset) var(--offset) 0 0 var(--ink); }
+.offset--sm { box-shadow: var(--offset-sm) var(--offset-sm) 0 0 var(--ink); }
+
+/* On ink, a black offset is invisible — flip it to paper. */
+.is-dark .offset { box-shadow: var(--offset) var(--offset) 0 0 var(--paper); }
+.is-dark .offset--sm { box-shadow: var(--offset-sm) var(--offset-sm) 0 0 var(--paper); }
+
+/* --------------------------------------------------------------------------
+   6. UTILITIES
+   -------------------------------------------------------------------------- */
+
+.u-visually-hidden:not(:focus):not(:active) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.u-bg-emerald { background-color: var(--emerald); color: var(--on-emerald); }
+.u-bg-blue    { background-color: var(--blue);    color: var(--on-blue); }
+.u-bg-coral   { background-color: var(--coral);   color: var(--on-coral); }
+.u-bg-sun     { background-color: var(--sun);     color: var(--on-sun); }
+.u-bg-ink     { background-color: var(--ink);     color: var(--on-ink); }
+.u-bg-paper   { background-color: var(--paper);   color: var(--on-paper); }
+
+/* --------------------------------------------------------------------------
+   7. SCROLL REVEAL
+   Opt-in, and only ever active once JS has confirmed it is running — the
+   `.js` class is set by an inline head script before first paint, so with
+   JavaScript disabled these elements are simply always visible.
+   -------------------------------------------------------------------------- */
+
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--space-sm));
+  transition: opacity var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-out);
+}
+
+.js [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. MOTION BACKSTOP
+   The tokens already collapse every duration; this catches anything
+   declared outside the token system.
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. PRINT
+   This portfolio arrives by email and may well be printed. Ink blocks and
+   WebGL canvases do not survive a printer; the words do.
+   -------------------------------------------------------------------------- */
+
+@media print {
+  body {
+    background: var(--print-paper) !important;
+    color: var(--print-ink) !important;
+    overflow-x: visible;
+  }
+
+  /* Without this the contact section prints as a solid black rectangle. */
+  .is-dark {
+    background: transparent !important;
+    color: var(--print-ink) !important;
+  }
+
+  .site-nav,
+  .hero-canvas,
+  .hero-stage,
+  .skip-link { display: none !important; }
+
+  .offset,
+  .offset--sm { box-shadow: none !important; }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+    word-break: break-all;
+  }
+
+  /* Force every accordion body open on paper. */
+  details > *:not(summary) { display: block !important; }
+
+  .band { break-inside: avoid; }
+}

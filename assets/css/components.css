@@ -1,0 +1,480 @@
+/* ==========================================================================
+   components.css — dweep-portfolio
+   Reusable pieces: nav, buttons, tags, cards, section heads, the project
+   accordion row, the pull-quote, the process step, the footer.
+   Layout that belongs to one section lives in pages.css, scoped by id.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   PAGE-LOAD SEQUENCE
+   One orchestrated entrance, then the page goes quiet. Each participant
+   declares its position with --rise-order (assigned in pages.css); the
+   delay is derived, never written out by hand.
+   -------------------------------------------------------------------------- */
+
+/* Deliberately NOT gated on `.js`, unlike the scroll reveals: this runs on
+   CSS alone, so the entrance still plays with JavaScript disabled. A
+   browser without CSS animation support ignores the declaration entirely
+   and paints the hero at its natural opacity, so there is no path where
+   this leaves the headline hidden. */
+[data-rise] {
+  animation: rise var(--dur-slow) var(--ease-out) both;
+  animation-delay: calc(var(--stagger) * var(--rise-order, 0));
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(1.25rem); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* --------------------------------------------------------------------------
+   NAV
+   -------------------------------------------------------------------------- */
+
+.site-nav {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--z-nav);
+  background-color: var(--paper);
+  border-block-end: var(--rule) solid var(--ink);
+}
+
+.site-nav__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2xs) var(--space-md);
+  min-height: var(--nav-h);
+  padding-block: var(--space-2xs);
+}
+
+.site-nav__mark {
+  text-decoration: none;
+  padding-block: var(--space-3xs);
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3xs) var(--space-sm);
+}
+
+.nav-links a {
+  text-decoration: none;
+  padding: var(--space-3xs) var(--space-2xs);
+  border: var(--rule) solid transparent;
+}
+
+.nav-links a[aria-current] {
+  background-color: var(--ink);
+  color: var(--on-ink);
+  border-color: var(--ink);
+}
+
+.nav-links a[aria-current]:hover {
+  background-color: var(--coral);
+  color: var(--on-coral);
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS
+   Mono, uppercase, hard border, hard offset. Hover nudges the block into
+   its own shadow rather than changing hue — hue changes on a saturated
+   block are the fastest way to lose the 4.5:1 floor.
+   -------------------------------------------------------------------------- */
+
+.btn {
+  /* inline-block, not inline-flex: the longest label is an email address,
+     and only normal text flow lets it wrap inside the button at 320px. */
+  display: inline-block;
+  padding: var(--space-xs) var(--space-md);
+  border: var(--rule) solid var(--ink);
+  background-color: var(--paper);
+  color: var(--on-paper);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: var(--wght-bold);
+  letter-spacing: var(--track-micro);
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  max-inline-size: 100%;
+  /* The email address is one long unbreakable token at 320px. */
+  overflow-wrap: anywhere;
+  transition: transform var(--dur-fast) var(--ease),
+              background-color var(--dur-fast) var(--ease);
+}
+
+.btn--primary {
+  background-color: var(--emerald);
+  color: var(--on-emerald);
+}
+
+.btn:hover {
+  background-color: var(--sun);
+  color: var(--on-sun);
+  transform: translate(calc(var(--lift) * -1), calc(var(--lift) * -1));
+}
+
+.btn:active {
+  transform: translate(0, 0);
+}
+
+.is-dark .btn {
+  border-color: var(--paper);
+}
+
+.is-dark .btn--primary {
+  border-color: var(--ink);
+}
+
+/* --------------------------------------------------------------------------
+   TAGS
+   -------------------------------------------------------------------------- */
+
+.tag {
+  display: inline-block;
+  padding: var(--space-3xs) var(--space-2xs);
+  border: var(--rule) solid currentColor;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: var(--wght-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--track-micro);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Filled status chips. Each carries its own contrast-paired text color. */
+.tag--live  { background-color: var(--emerald); color: var(--on-emerald); border-color: var(--ink); }
+.tag--work  { background-color: var(--blue);    color: var(--on-blue);    border-color: var(--ink); }
+.tag--data  { background-color: var(--sun);     color: var(--on-sun);     border-color: var(--ink); }
+.tag--repo  { background-color: var(--ink);     color: var(--on-ink);     border-color: var(--ink); }
+
+/* Stack tags are quiet: outline only, no fill, so eight in a row do not
+   turn a project into a colour chart. */
+.tag--stack {
+  font-weight: var(--wght-bold);
+  white-space: normal;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION HEAD
+   -------------------------------------------------------------------------- */
+
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-block-end: var(--space-xl);
+}
+
+.section-head__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  align-self: flex-start;
+}
+
+.section-head__eyebrow::before {
+  content: "";
+  inline-size: var(--space-xs);
+  block-size: var(--space-xs);
+  background-color: var(--emerald);
+  border: var(--rule) solid var(--ink);
+}
+
+.is-dark .section-head__eyebrow::before {
+  border-color: var(--paper);
+}
+
+.section-head__sub {
+  max-width: var(--measure);
+}
+
+/* --------------------------------------------------------------------------
+   CARD — skills grid and certifications grid
+   -------------------------------------------------------------------------- */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background-color: var(--paper);
+  color: var(--on-paper);
+  border: var(--rule) solid var(--ink);
+}
+
+.card__label {
+  align-self: flex-start;
+  padding: var(--space-3xs) var(--space-2xs);
+  border: var(--rule) solid var(--ink);
+}
+
+.card__label--emerald { background-color: var(--emerald); color: var(--on-emerald); }
+.card__label--blue    { background-color: var(--blue);    color: var(--on-blue); }
+.card__label--coral   { background-color: var(--coral);   color: var(--on-coral); }
+.card__label--sun     { background-color: var(--sun);     color: var(--on-sun); }
+.card__label--ink     { background-color: var(--ink);     color: var(--on-ink); }
+
+.card__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+}
+
+.card__list li {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  line-height: var(--lh-tight);
+}
+
+/* Separator dot between items — a set, not a sequence, so no numbers. */
+.card__list li:not(:last-child)::after {
+  content: "·";
+  margin-inline-start: var(--space-2xs);
+}
+
+/* --------------------------------------------------------------------------
+   ACCORDION ROW — the real element is <details>; JS only enhances it.
+   -------------------------------------------------------------------------- */
+
+.accordion {
+  border-block-start: var(--rule) solid var(--ink);
+  /* The tilt lives here so tilt.js only ever writes rotateX / rotateY. */
+  perspective: 60rem;
+}
+
+.row {
+  border-block-end: var(--rule) solid var(--ink);
+  transform-style: preserve-3d;
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.row__summary {
+  display: grid;
+  grid-template-columns: var(--num-col, min-content) 1fr min-content;
+  column-gap: var(--space-md);
+  row-gap: var(--space-2xs);
+  align-items: start;
+  padding-block: var(--space-md);
+  list-style: none;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+
+.row__summary::-webkit-details-marker { display: none; }
+.row__summary::marker { content: ""; }
+
+.row__summary:hover {
+  background-color: var(--sun);
+}
+
+.row__num {
+  color: var(--ink);
+  padding-block-start: var(--space-3xs);
+}
+
+.row__main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  min-width: 0;
+}
+
+.row__title {
+  overflow-wrap: break-word;
+}
+
+.row__hook {
+  max-width: var(--measure);
+}
+
+.row__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2xs);
+  margin-block-start: var(--space-3xs);
+}
+
+/* + / − marker, drawn from two rules so it matches the page's line weight. */
+.row__marker {
+  position: relative;
+  inline-size: var(--space-lg);
+  block-size: var(--space-lg);
+  border: var(--rule) solid var(--ink);
+  background-color: var(--paper);
+  margin-block-start: var(--space-3xs);
+}
+
+.row__marker::before,
+.row__marker::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: 50%;
+  block-size: var(--rule);
+  background-color: var(--ink);
+  translate: -50% -50%;
+  transition: rotate var(--dur-fast) var(--ease),
+              opacity var(--dur-fast) var(--ease);
+}
+
+.row__marker::after { rotate: 90deg; }
+
+.row[open] .row__marker::after { rotate: 0deg; }
+
+.row__body {
+  display: grid;
+  gap: var(--space-md);
+  padding-block-end: var(--space-lg);
+  padding-inline-start: 0;
+}
+
+.row__bullets {
+  display: grid;
+  gap: var(--space-2xs);
+  max-width: var(--measure);
+}
+
+.row__bullets li {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  gap: var(--space-2xs);
+}
+
+.row__bullets li::before {
+  content: "→";
+  font-family: var(--font-mono);
+  color: var(--ink);
+}
+
+/* A metric strip — the numbers a reviewer actually scans for. */
+.metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  padding: var(--space-sm);
+  background-color: var(--sun);
+  color: var(--on-sun);
+  border: var(--rule) solid var(--ink);
+}
+
+.metrics dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: var(--wght-bold);
+  letter-spacing: var(--track-micro);
+  text-transform: uppercase;
+}
+
+.metrics dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  font-weight: var(--wght-bold);
+}
+
+.metrics__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  padding-inline-end: var(--space-sm);
+}
+
+.row__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+}
+
+/* Trailing action under a section's main content. */
+.section-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin-block-start: var(--space-lg);
+}
+
+/* --------------------------------------------------------------------------
+   PULL QUOTE
+   -------------------------------------------------------------------------- */
+
+.pull-quote {
+  padding: var(--space-xl) var(--space-lg);
+  background-color: var(--coral);
+  color: var(--on-coral);
+  border: var(--rule) solid var(--ink);
+  font-family: var(--font-display);
+  font-size: var(--fs-quote);
+  font-weight: var(--wght-display);
+  font-stretch: var(--wdth-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--track-display);
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.pull-quote p { text-wrap: balance; }
+
+/* --------------------------------------------------------------------------
+   PROCESS STEP
+   -------------------------------------------------------------------------- */
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  border: var(--rule) solid var(--ink);
+}
+
+.step__num {
+  /* currentColor, so the glyph inherits whichever contrast-paired text
+     color the block sets — paper on blue, ink on everything else. */
+  color: currentColor;
+  opacity: 0.85;
+}
+
+.step--emerald { background-color: var(--emerald); color: var(--on-emerald); }
+.step--blue    { background-color: var(--blue);    color: var(--on-blue); }
+.step--sun     { background-color: var(--sun);     color: var(--on-sun); }
+.step--coral   { background-color: var(--coral);   color: var(--on-coral); }
+
+/* --------------------------------------------------------------------------
+   LINK LIST — contact profiles
+   -------------------------------------------------------------------------- */
+
+.link-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs) var(--space-md);
+}
+
+.link-list a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-3xs) var(--space-2xs);
+  text-decoration: none;
+  border-block-end: var(--rule) solid currentColor;
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  padding-block: var(--space-md);
+  border-block-start: var(--rule) solid currentColor;
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2xs) var(--space-md);
+}

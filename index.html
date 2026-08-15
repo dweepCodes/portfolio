@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Dweep Shishodia — ML Engineer</title>
+  <meta name="description" content="ML engineer and BS Data Science student at IIT Madras. I take problems from raw data to a URL someone can actually open. Founder of matri6.">
+  <link rel="canonical" href="https://dweep.matri6.com/">
+  <meta name="author" content="Dweep Shishodia">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dweep Shishodia">
+  <meta property="og:url" content="https://dweep.matri6.com/">
+  <meta property="og:title" content="Dweep Shishodia — ML Engineer">
+  <meta property="og:description" content="ML engineer and BS Data Science student at IIT Madras. I take problems from raw data to a URL someone can actually open. Founder of matri6.">
+  <meta property="og:image" content="https://dweep.matri6.com/assets/img/og-cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Dweep Shishodia — ML Engineer. Models are easy. Products are hard.">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dweep Shishodia — ML Engineer">
+  <meta name="twitter:description" content="ML engineer and BS Data Science student at IIT Madras. I take problems from raw data to a URL someone can actually open. Founder of matri6.">
+  <meta name="twitter:image" content="https://dweep.matri6.com/assets/img/og-cover.png">
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <!-- Mirrors --paper in tokens.css. A meta value cannot read a custom
+       property, so this is the one colour literal outside that file. -->
+  <meta name="theme-color" content="#F6F7F5">
+
+  <!-- Three families, only the axes actually used: Archivo with both
+       variable axes (wdth 62-125, wght 100-900) because the system runs it
+       condensed-heavy for headlines and wide for the wordmark; Inter Tight
+       and JetBrains Mono need weight only. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Inter+Tight:wght@400..700&family=JetBrains+Mono:wght@400..700&display=swap">
+
+  <!-- Cascade order is load-bearing. Do not reorder. -->
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/pages.css">
+
+  <!-- Set before first paint so scroll-reveal targets are only ever hidden
+       when JavaScript is actually running. With JS off they stay visible. -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dweep Shishodia",
+    "jobTitle": "ML Engineer",
+    "url": "https://dweep.matri6.com/",
+    "image": "https://dweep.matri6.com/assets/img/og-cover.png",
+    "email": "mailto:dweepshishodia57@gmail.com",
+    "description": "ML engineer and BS Data Science student at IIT Madras. Founder of matri6.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Pune",
+      "addressRegion": "Maharashtra",
+      "addressCountry": "IN"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Indian Institute of Technology Madras"
+    },
+    "worksFor": {
+      "@type": "Organization",
+      "name": "matri6",
+      "url": "https://matri6.com"
+    },
+    "knowsAbout": ["Machine Learning", "Deep Learning", "MLOps", "Generative AI", "Data Science"],
+    "sameAs": [
+      "https://github.com/dweep1128",
+      "https://www.linkedin.com/in/dweep1128/",
+      "https://www.kaggle.com/dweepshishodia",
+      "https://matri6.com"
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <nav class="wrap site-nav__inner" aria-label="Primary">
+      <a class="site-nav__mark t-wordmark" href="index.html" data-rise>Dweep Shishodia</a>
+      <ul class="nav-links t-micro">
+        <li><a href="#projects">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="certifications.html" aria-label="Certifications and achievements">Certs</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ================================================================
+         HERO
+         ================================================================ -->
+    <section id="hero" class="band band--flush" aria-labelledby="hero-headline">
+      <div class="wrap">
+
+        <p class="hero__eyebrow t-micro" data-rise>
+          ML Engineer · BS Data Science, IIT Madras · Building matri6
+        </p>
+
+        <h1 class="hero__headline" id="hero-headline">
+          <span class="hero__line" data-rise>Models are easy.</span>
+          <span class="hero__line" data-rise>Products are hard.</span>
+          <span class="hero__line hero__line--accent" data-rise><em>I build the second kind.</em></span>
+        </h1>
+
+        <div class="hero__grid">
+
+        <div class="hero__copy">
+          <p class="hero__sub t-lead" data-rise>
+            Dweep Shishodia — ML engineer. I take problems from raw data to a URL
+            someone can actually open.
+          </p>
+
+          <div class="hero__cta cluster" data-rise>
+            <a class="btn btn--primary offset--sm" href="#projects">See the work ↓</a>
+            <a class="btn offset--sm" href="mailto:dweepshishodia57@gmail.com">Email me ↗</a>
+          </div>
+        </div>
+
+        <!-- The signature element. The SVG below is the markup default: it
+             is what renders with JavaScript off, with the CDN blocked, or
+             without WebGL. hero3d.js replaces it with a live scene and sets
+             data-3d="on" only once that scene is actually drawing. -->
+        <div class="hero-stage" id="hero-stage" data-rise>
+          <svg class="hero-fallback" viewBox="-104 -104 222 222" role="img"
+               aria-label="Flat-shaded emerald icosahedron with a black wireframe and a hard black drop shadow.">
+            <polygon class="hero-fallback__shadow"
+                     points="0,-100 58.78,-80.9 95.11,-30.9 95.11,30.9 58.78,80.9 0,100 -58.78,80.9 -95.11,30.9 -95.11,-30.9 -58.78,-80.9"
+                     transform="translate(14 14)"/>
+            <polygon class="hero-fallback__face"
+                     points="0,-100 58.78,-80.9 95.11,-30.9 95.11,30.9 58.78,80.9 0,100 -58.78,80.9 -95.11,30.9 -95.11,-30.9 -58.78,-80.9"/>
+            <g class="hero-fallback__edges">
+              <!-- The 30 edges of an icosahedron viewed down a five-fold
+                   axis: a decagon rim, ten spokes, and two pentagons. -->
+              <polygon points="0,-100 58.78,-80.9 95.11,-30.9 95.11,30.9 58.78,80.9 0,100 -58.78,80.9 -95.11,30.9 -95.11,-30.9 -58.78,-80.9"/>
+              <polygon points="0,-100 95.11,-30.9 58.78,80.9 -58.78,80.9 -95.11,-30.9"/>
+              <polygon points="58.78,-80.9 95.11,30.9 0,100 -95.11,30.9 -58.78,-80.9"/>
+              <line x1="0" y1="0" x2="0" y2="-100"/>
+              <line x1="0" y1="0" x2="58.78" y2="-80.9"/>
+              <line x1="0" y1="0" x2="95.11" y2="-30.9"/>
+              <line x1="0" y1="0" x2="95.11" y2="30.9"/>
+              <line x1="0" y1="0" x2="58.78" y2="80.9"/>
+              <line x1="0" y1="0" x2="0" y2="100"/>
+              <line x1="0" y1="0" x2="-58.78" y2="80.9"/>
+              <line x1="0" y1="0" x2="-95.11" y2="30.9"/>
+              <line x1="0" y1="0" x2="-95.11" y2="-30.9"/>
+              <line x1="0" y1="0" x2="-58.78" y2="-80.9"/>
+            </g>
+          </svg>
+        </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         ABOUT
+         ================================================================ -->
+    <section id="about" class="band" aria-labelledby="about-title">
+      <div class="wrap">
+        <header class="section-head" data-reveal>
+          <p class="section-head__eyebrow t-micro">About</p>
+          <h2 id="about-title">The matri6 thesis</h2>
+        </header>
+
+        <div class="about__grid">
+          <div class="about__prose prose" data-reveal>
+            <p>
+              Most ML work stops at a notebook with a good score in it. Mine stops
+              at a deployed URL — every project listed on this page is live,
+              containerized, or serving predictions to someone.
+            </p>
+            <p>
+              <strong>matri6</strong> is the studio that holds that work: a parent
+              brand under which products get built, branded, and shipped.
+              <strong>Paleskies</strong> — AI product video generation for D2C
+              brands — is its flagship, and it took runner-up at IIT Madras'
+              Compassion-a-thon 3.0.
+            </p>
+            <p>
+              I'm currently a second-year BS Data Science student at IIT Madras
+              (CGPA 8.0, Foundational Level complete) and a freelance ML engineer.
+              Open to research assistantships, internships, and full-time roles.
+            </p>
+          </div>
+
+          <blockquote class="pull-quote offset" data-reveal>
+            <p>Models are easy. Products are hard.</p>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SKILLS — a set, not a sequence. Mono category labels, no numbers.
+         ================================================================ -->
+    <section id="skills" class="band" aria-labelledby="skills-title">
+      <div class="wrap">
+        <header class="section-head" data-reveal>
+          <p class="section-head__eyebrow t-micro">Toolkit</p>
+          <h2 id="skills-title">What I build with</h2>
+        </header>
+
+        <ul class="grid" data-reveal>
+          <li class="card offset--sm">
+            <p class="card__label card__label--emerald t-micro">Languages</p>
+            <ul class="card__list">
+              <li>Python</li><li>SQL</li><li>Java</li>
+            </ul>
+          </li>
+
+          <li class="card offset--sm">
+            <p class="card__label card__label--blue t-micro">ML / Modeling</p>
+            <ul class="card__list">
+              <li>PyTorch</li><li>XGBoost</li><li>LightGBM</li><li>CatBoost</li>
+              <li>Scikit-Learn</li><li>Optuna</li><li>SHAP</li>
+            </ul>
+          </li>
+
+          <li class="card offset--sm">
+            <p class="card__label card__label--coral t-micro">GenAI / NLP</p>
+            <ul class="card__list">
+              <li>BERT</li><li>FAISS</li><li>RAG pipelines</li><li>Seedance 2.0</li>
+              <li>rembg (BiRefNet)</li><li>OpenCV</li><li>Pillow</li>
+            </ul>
+          </li>
+
+          <li class="card offset--sm">
+            <p class="card__label card__label--sun t-micro">Agentic AI</p>
+            <ul class="card__list">
+              <li>LangChain</li><li>LangGraph</li>
+            </ul>
+          </li>
+
+          <li class="card offset--sm">
+            <p class="card__label card__label--ink t-micro">Data &amp; Compute</p>
+            <ul class="card__list">
+              <li>Pandas</li><li>Polars</li><li>NumPy</li><li>Matplotlib</li><li>Seaborn</li>
+            </ul>
+          </li>
+
+          <li class="card offset--sm">
+            <p class="card__label card__label--emerald t-micro">Ship &amp; Deploy</p>
+            <ul class="card__list">
+              <li>FastAPI</li><li>Flask</li><li>Streamlit</li><li>Docker</li>
+              <li>Supabase</li><li>AWS</li><li>Google Cloud</li><li>Render</li><li>Git</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         PROJECTS — numbered in reverse chronological order. The number
+         encodes the timeline, which is why the date sits beside it.
+         Built on <details>: fully usable with JavaScript disabled.
+         ================================================================ -->
+    <section id="projects" class="band" aria-labelledby="projects-title">
+      <div class="wrap">
+        <header class="section-head" data-reveal>
+          <p class="section-head__eyebrow t-micro">Selected work</p>
+          <h2 id="projects-title">Six things that shipped</h2>
+          <p class="section-head__sub">
+            Newest first. Open a row for the problem, the approach, and the result.
+          </p>
+        </header>
+
+        <div class="accordion" data-reveal>
+
+          <!-- 01 ------------------------------------------------------- -->
+          <details class="row" name="projects">
+            <summary class="row__summary">
+              <span class="row__num t-number" aria-hidden="true">01</span>
+              <span class="row__main">
+                <span class="row__title t-h3">Paleskies</span>
+                <span class="row__hook">
+                  AI product video generation for D2C brands — replacing studio
+                  shoots with video generated from a single product image.
+                </span>
+                <span class="row__meta">
+                  <span class="tag tag--live">Live</span>
+                  <span class="tag tag--stack">FastAPI</span>
+                  <span class="tag tag--stack">fal.ai Seedance 2.0</span>
+                  <span class="tag tag--stack">rembg (BiRefNet)</span>
+                  <span class="tag tag--stack">OpenCV</span>
+                  <span class="tag tag--stack">Pillow</span>
+                  <span class="tag tag--stack">Supabase</span>
+                  <span class="tag tag--stack">Docker</span>
+                  <span class="tag tag--stack">AWS</span>
+                </span>
+              </span>
+              <span class="row__marker" aria-hidden="true"></span>
+            </summary>
+            <div class="row__body">
+              <ul class="row__bullets">
+                <li>D2C brands pay studio rates and wait days for one product video — the cost and the turnaround are what stop most of them from shipping video at all.</li>
+                <li>The backend is a single pipeline: background removal, preprocessing, reference-to-video generation, then Postgres and Storage persistence — containerized end to end.</li>
+                <li>Runner-up at IIT Madras' Compassion-a-thon 3.0.</li>
+              </ul>
+              <p class="row__links">
+                <a class="btn offset--sm" href="https://paleskies.matri6.com" rel="noopener">Open paleskies.matri6.com ↗</a>
+              </p>
+            </div>
+          </details>
+
+          <!-- 02 ------------------------------------------------------- -->
+          <details class="row" name="projects">
+            <summary class="row__summary">
+              <span class="row__num t-number" aria-hidden="true">02</span>
+              <span class="row__main">
+                <span class="row__title t-h3">Personality Assessment AI</span>
+                <span class="row__hook">
+                  Adaptive personality assessment making psychological self-insight
+                  affordable.
+                </span>
+                <span class="row__meta">
+                  <span class="tag tag--work">Freelance</span>
+                  <span class="tag tag--stack">BERT</span>
+                  <span class="tag tag--stack">FAISS</span>
+                  <span class="tag tag--stack">Python</span>
+                </span>
+              </span>
+              <span class="row__marker" aria-hidden="true"></span>
+            </summary>
+            <div class="row__body">
+              <ul class="row__bullets">
+                <li>5,000 psychologist-authored questions, built by a two-person full-stack team.</li>
+                <li>Adaptive question recommendation engine: BERT embeddings plus FAISS vector search choose the next question from response history and semantic alignment.</li>
+                <li>Explainable report layer computes weighted sub-category contribution scores, so the output is readable rather than opaque.</li>
+              </ul>
+              <p class="row__note t-small">Confidential client — no name, no logo, no live link.</p>
+            </div>
+          </details>
+
+          <!-- 03 ------------------------------------------------------- -->
+          <details class="row" name="projects">
+            <summary class="row__summary">
+              <span class="row__num t-number" aria-hidden="true">03</span>
+              <span class="row__main">
+                <span class="row__title t-h3">AgroNav</span>
+                <span class="row__hook">
+                  Territory prioritization for agri-sales reps — predicts whether a
+                  visit converts within 7 days so reps stop burning travel on dead leads.
+                </span>
+                <span class="row__meta">
+                  <span class="tag tag--live">Live app</span>
+                  <span class="tag tag--stack">CatBoost</span>
+                  <span class="tag tag--stack">LightGBM</span>
+                  <span class="tag tag--stack">XGBoost</span>
+                  <span class="tag tag--stack">Optuna</span>
+                  <span class="tag tag--stack">SHAP</span>
+                  <span class="tag tag--stack">FastAPI</span>
+                  <span class="tag tag--stack">Google Cloud Run</span>
+                </span>
+              </span>
+              <span class="row__marker" aria-hidden="true"></span>
+            </summary>
+            <div class="row__body">
+              <dl class="metrics">
+                <div class="metrics__item"><dt>Test ROC-AUC</dt><dd>0.8141</dd></div>
+                <div class="metrics__item"><dt>F1-macro</dt><dd>0.7256</dd></div>
+                <div class="metrics__item"><dt>Engineered features</dt><dd>12</dd></div>
+                <div class="metrics__item"><dt>Optuna trials</dt><dd>50</dd></div>
+              </dl>
+              <ul class="row__bullets">
+                <li>Gradient-boosted ensemble over 12 engineered features, tuned across 50 Optuna trials and checked with SHAP so the model is learning route economics, not an artifact.</li>
+                <li>Served from FastAPI on Google Cloud Run — a rep gets a ranked visit list, not a notebook.</li>
+              </ul>
+              <!-- Live URL not published yet. Paste it here when it is:
+                   <p class="row__links"><a class="btn offset--sm" href="" rel="noopener">Open the app ↗</a></p> -->
+            </div>
+          </details>
+
+          <!-- 04 ------------------------------------------------------- -->
+          <details class="row" name="projects">
+            <summary class="row__summary">
+              <span class="row__num t-number" aria-hidden="true">04</span>
+              <span class="row__main">
+                <span class="row__title t-h3">StockSense</span>
+                <span class="row__hook">
+                  Memory-efficient retail demand forecasting over 1.05M+ time-series
+                  records.
+                </span>
+                <span class="row__meta">
+                  <span class="tag tag--data">Kaggle</span>
+                  <span class="tag tag--stack">Polars</span>
+                  <span class="tag tag--stack">LightGBM</span>
+                  <span class="tag tag--stack">Optuna</span>
+                </span>
+              </span>
+              <span class="row__marker" aria-hidden="true"></span>
+            </summary>
+            <div class="row__body">
+              <dl class="metrics">
+                <div class="metrics__item"><dt>RMSE</dt><dd>1288 → 647</dd></div>
+                <div class="metrics__item"><dt>Error cut</dt><dd>~50%</dd></div>
+                <div class="metrics__item"><dt>Records</dt><dd>1.05M+</dd></div>
+              </dl>
+              <ul class="row__bullets">
+                <li>Polars lazy evaluation kept 1.05M+ rows inside memory budget through the whole feature build.</li>
+                <li>Lag features, rolling statistics, and store-promo interactions did the work — the error halved before any exotic model was reached for.</li>
+              </ul>
+              <p class="row__links">
+                <a class="btn offset--sm" href="https://www.kaggle.com/dweepshishodia" rel="noopener">Kaggle profile ↗</a>
+              </p>
+            </div>
+          </details>
+
+          <!-- 05 ------------------------------------------------------- -->
+          <details class="row" name="projects">
+            <summary class="row__summary">
+              <span class="row__num t-number" aria-hidden="true">05</span>
+              <span class="row__main">
+                <span class="row__title t-h3">AutoVal</span>
+                <span class="row__hook">
+                  Instant data-driven used-car valuations for Indian consumers.
+                </span>
+                <span class="row__meta">
+                  <span class="tag tag--live">Live app</span>
+                  <span class="tag tag--stack">Flask</span>
+                  <span class="tag tag--stack">XGBoost</span>
+                  <span class="tag tag--stack">Optuna</span>
+                  <span class="tag tag--stack">Render</span>
+                </span>
+              </span>
+              <span class="row__marker" aria-hidden="true"></span>
+            </summary>
+            <div class="row__body">
+              <dl class="metrics">
+                <div class="metrics__item"><dt>Accuracy</dt><dd>91%</dd></div>
+              </dl>
+              <ul class="row__bullets">
+                <li>Used-car pricing in India is opaque and dealer-led; a buyer has no independent number to argue from.</li>
+                <li>End-to-end pipeline — cleaning, feature build, XGBoost tuned with Optuna — deployed as a Flask REST backend on Render.</li>
+              </ul>
+              <!-- Live URL and repo not published here yet. Paste them in:
+                   <p class="row__links">
+                     <a class="btn offset--sm" href="" rel="noopener">Open the app ↗</a>
+                     <a class="btn offset--sm" href="" rel="noopener">Source ↗</a>
+                   </p> -->
+            </div>
+          </details>
+
+          <!-- 06 ------------------------------------------------------- -->
+          <details class="row" name="projects">
+            <summary class="row__summary">
+              <span class="row__num t-number" aria-hidden="true">06</span>
+              <span class="row__main">
+                <span class="row__title t-h3">SmartCart</span>
+                <span class="row__hook">
+                  Turned an undifferentiated customer base into 4 actionable
+                  purchasing personas.
+                </span>
+                <span class="row__meta">
+                  <span class="tag tag--repo">Repository</span>
+                  <span class="tag tag--stack">K-Means</span>
+                  <span class="tag tag--stack">PCA</span>
+                  <span class="tag tag--stack">Scikit-Learn</span>
+                </span>
+              </span>
+              <span class="row__marker" aria-hidden="true"></span>
+            </summary>
+            <div class="row__body">
+              <ul class="row__bullets">
+                <li>PCA dimensionality reduction ahead of K-Means, so the clusters separate on real variance instead of on noise.</li>
+                <li>Four personas a marketing team can act on — targeted campaigns instead of blanket messaging.</li>
+              </ul>
+              <!-- Repo URL not published here yet. Paste it in:
+                   <p class="row__links"><a class="btn offset--sm" href="" rel="noopener">Source ↗</a></p> -->
+            </div>
+          </details>
+
+        </div>
+
+        <p class="section-cta" data-reveal>
+          <a class="btn offset--sm" href="https://github.com/dweep1128" rel="noopener">All repositories on GitHub ↗</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         PROCESS — numbered because the steps genuinely happen in order.
+         ================================================================ -->
+    <section id="process" class="band" aria-labelledby="process-title">
+      <div class="wrap">
+        <header class="section-head" data-reveal>
+          <p class="section-head__eyebrow t-micro">Process</p>
+          <h2 id="process-title">How the work goes</h2>
+        </header>
+
+        <ol class="grid" data-reveal>
+          <li class="step step--emerald offset--sm">
+            <p class="step__num t-number" aria-hidden="true">01</p>
+            <h3>Understand the cost of being wrong.</h3>
+            <p>Before any modeling, what does a false positive actually cost the person using this?</p>
+          </li>
+          <li class="step step--blue offset--sm">
+            <p class="step__num t-number" aria-hidden="true">02</p>
+            <h3>Build the boring baseline first.</h3>
+            <p>A simple model that ships beats a complex one that doesn't.</p>
+          </li>
+          <li class="step step--sun offset--sm">
+            <p class="step__num t-number" aria-hidden="true">03</p>
+            <h3>Tune deliberately.</h3>
+            <p>Optuna sweeps, honest validation, SHAP to check the model learned the real signal and not an artifact.</p>
+          </li>
+          <li class="step step--coral offset--sm">
+            <p class="step__num t-number" aria-hidden="true">04</p>
+            <h3>Ship it.</h3>
+            <p>Containerize, deploy, hand over a URL. A model nobody can call isn't finished.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         CONTACT — the one dark band. No form backend: a form that silently
+         fails is worse than no form.
+         ================================================================ -->
+    <section id="contact" class="band is-dark" aria-labelledby="contact-title">
+      <div class="wrap contact__grid">
+        <div>
+          <header class="section-head" data-reveal>
+            <p class="section-head__eyebrow t-micro">Contact</p>
+            <h2 id="contact-title">Let's build something that ships.</h2>
+          </header>
+          <p class="t-lead measure" data-reveal>
+            Open to research assistantships, internships, and freelance ML work.
+          </p>
+        </div>
+
+        <div class="contact__actions" data-reveal>
+          <a class="btn btn--primary offset--sm" href="mailto:dweepshishodia57@gmail.com">dweepshishodia57@gmail.com ↗</a>
+          <ul class="link-list t-micro">
+            <li><a href="https://github.com/dweep1128" rel="noopener">GitHub ↗</a></li>
+            <li><a href="https://www.linkedin.com/in/dweep1128/" rel="noopener">LinkedIn ↗</a></li>
+            <li><a href="https://www.kaggle.com/dweepshishodia" rel="noopener">Kaggle ↗</a></li>
+            <li><a href="https://matri6.com" rel="noopener">matri6 ↗</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="is-dark">
+    <div class="wrap">
+      <div class="contact__lockup">
+        <p class="contact__wordmark t-wordmark">Dweep Shishodia</p>
+      </div>
+      <div class="site-footer site-footer__inner t-micro">
+        <p>Pune, Maharashtra, India</p>
+        <p>Built as static HTML, CSS and ES modules — no build step.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

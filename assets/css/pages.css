@@ -1,0 +1,356 @@
+/* ==========================================================================
+   pages.css — dweep-portfolio
+   Section-specific layout only, every selector scoped to its section id so
+   two sections can never cancel each other's padding.
+   Breakpoints are literal rem values because a media query cannot read a
+   custom property; they are the only literals allowed outside tokens.css.
+     40rem = 640px   ·  48rem = 768px  ·  60rem = 960px
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   HERO
+   -------------------------------------------------------------------------- */
+
+#hero {
+  padding-block-start: var(--hero-top);
+  padding-block-end: var(--section-y);
+}
+
+/* The headline runs the full container width — at the display size the type
+   scale calls for, a column would force every line to wrap. The 3D object
+   and the supporting copy share the row underneath it. */
+#hero .hero__grid {
+  display: grid;
+  gap: var(--space-xl);
+  align-items: center;
+  margin-block-start: var(--space-2xl);
+}
+
+#hero .hero__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* Spacing between the headline lines is set by margins, not by the flex
+   gap, so each interval can be sized on its own: a small beat between the
+   two statements, a larger one before the answer. */
+#hero .hero__headline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  margin-block-start: var(--space-lg);
+}
+
+#hero .hero__line {
+  display: block;
+}
+
+#hero .hero__line + .hero__line {
+  margin-block-start: var(--space-2xs);
+}
+
+/* Line three is the promise, so it gets the one colour block in the
+   headline — and its own beat of silence ahead of it. Coral type on paper
+   is 2.9:1; as a filled block behind ink it is 6.4:1. */
+#hero .hero__line + .hero__line--accent {
+  margin-block-start: var(--space-md);
+}
+
+#hero .hero__line--accent {
+  background-color: var(--coral);
+  color: var(--on-coral);
+  padding-inline: var(--space-2xs);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+#hero .hero__line--accent em {
+  font-style: normal;
+}
+
+#hero .hero__sub {
+  max-width: var(--measure);
+}
+
+#hero .hero__cta {
+  margin-block-start: var(--space-2xs);
+}
+
+/* Side by side, the two buttons fill 93% of a 430px screen and wrap to a
+   ragged two-row block below that. Stacking them full-width is both tidier
+   and a bigger tap target. */
+@media (max-width: 30rem) {
+  #hero .hero__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2xs);
+  }
+}
+
+/* Page-load sequence (see components.css for the [data-rise] mechanism):
+   wordmark → headline lines stagger in → 3D object fades up.
+   Runs on CSS alone, so it plays with JavaScript disabled, and collapses
+   to an instant paint under prefers-reduced-motion. */
+.site-nav__mark                 { --rise-order: 0; }
+#hero .hero__eyebrow            { --rise-order: 1; }
+#hero .hero__line:nth-child(1)  { --rise-order: 2; }
+#hero .hero__line:nth-child(2)  { --rise-order: 3; }
+#hero .hero__line:nth-child(3)  { --rise-order: 4; }
+#hero .hero__sub                { --rise-order: 5; }
+#hero .hero__cta                { --rise-order: 6; }
+#hero .hero-stage               { --rise-order: 4; }
+
+/* The 3D stage. Square, so the icosahedron never gets cropped by an
+   awkward aspect ratio, and capped so it cannot dwarf the headline. */
+.hero-stage {
+  position: relative;
+  inline-size: 100%;
+  max-inline-size: var(--hero-stage-max);
+  margin-inline: auto;
+  aspect-ratio: 1;
+  min-block-size: var(--hero-min);
+}
+
+/* The object's own clearance, on top of the grid's. The stage is the tallest
+   thing in its row, so this margin sets the row height and pushes the object
+   clear of the coral block above it at every width — the grid gap alone
+   cannot, because it is shared with the short copy column beside it. */
+#hero .hero-stage {
+  margin-block-start: var(--space-md);
+}
+
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+/* Static silhouette: the markup default. It is what renders with JS off,
+   with the CDN blocked, or without WebGL. hero3d.js hides it only once a
+   live scene is actually drawing. */
+.hero-fallback {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.hero-stage[data-3d="on"] .hero-fallback {
+  display: none;
+}
+
+/* The fallback's colours are set here rather than as SVG attributes so the
+   markup carries no literal values either. */
+.hero-fallback__shadow { fill: var(--ink); }
+.hero-fallback__face   { fill: var(--emerald); }
+
+.hero-fallback__edges {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: var(--stroke-svg);
+  stroke-linejoin: miter;
+  stroke-linecap: square;
+}
+
+@media (min-width: 60rem) {
+  /* Desktop has the room, and the display type is 100px+ here — the
+     viewport-height clamp alone reads as a crowded margin against it. */
+  #hero {
+    padding-block-start: var(--space-3xl);
+  }
+
+  #hero .hero__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ABOUT
+   -------------------------------------------------------------------------- */
+
+#about .about__grid {
+  display: grid;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+#about .about__prose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: var(--measure);
+}
+
+@media (min-width: 60rem) {
+  #about .about__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+    gap: var(--space-2xl);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   SKILLS — a set, not a sequence: mono category labels, no numbers.
+   -------------------------------------------------------------------------- */
+
+#skills .grid {
+  --col: 17rem;
+}
+
+/* --------------------------------------------------------------------------
+   PROJECTS — numbered in reverse chronological order; the number encodes
+   the timeline, which is why the date sits beside it.
+   -------------------------------------------------------------------------- */
+
+#projects {
+  /* One column width shared by the summary grid and the expanded body, so
+     the bullets line up under the title rather than under the number. */
+  --num-col: var(--col-number);
+}
+
+#projects .accordion {
+  margin-block-start: var(--space-lg);
+}
+
+#projects .row__body {
+  display: grid;
+  gap: var(--space-md);
+}
+
+@media (min-width: 48rem) {
+  #projects .row__body {
+    padding-inline-start: calc(var(--num-col) + var(--space-md));
+  }
+}
+
+#projects .row__note {
+  max-width: var(--measure);
+}
+
+/* --------------------------------------------------------------------------
+   PROCESS — numbered because the steps genuinely happen in sequence.
+   -------------------------------------------------------------------------- */
+
+#process .grid {
+  --col: 15rem;
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT — the one dark band.
+   -------------------------------------------------------------------------- */
+
+#contact .contact__grid {
+  display: grid;
+  /* minmax(0, …) rather than a bare 1fr: an auto track refuses to shrink
+     below its widest child, and the email address is one unbreakable word. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+#contact .contact__grid > * {
+  min-width: 0;
+}
+
+#contact .contact__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+
+/* The lockup lives in <footer>, which continues the same ink field the
+   contact band starts — hence no #contact scope on these two. */
+.contact__lockup {
+  padding-block-start: var(--space-lg);
+}
+
+.contact__wordmark {
+  display: block;
+  font-size: var(--fs-wordmark-xl);
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 60rem) {
+  #contact .contact__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr);
+    gap: var(--space-2xl);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PAGE HEAD — certifications.html and 404.html
+   -------------------------------------------------------------------------- */
+
+#page-head {
+  padding-block-start: var(--space-2xl);
+  padding-block-end: var(--section-y);
+}
+
+/* Secondary pages take the h2 step, not the display step: "Certifications"
+   is a 14-character unbreakable word that overflows a 320px screen at the
+   display size. Still the largest thing on the page. */
+#page-head h1 {
+  font-size: var(--fs-h2);
+}
+
+#page-head .page-head__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+
+#page-head .page-head__sub {
+  max-width: var(--measure);
+}
+
+/* --------------------------------------------------------------------------
+   CERTIFICATIONS
+   -------------------------------------------------------------------------- */
+
+#certs .grid {
+  --col: 20rem;
+}
+
+#certs .cert {
+  gap: var(--space-sm);
+}
+
+#certs .cert__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3xs) var(--space-sm);
+}
+
+#certs .cert__body {
+  max-width: var(--measure);
+}
+
+#certs .cert__thumb {
+  inline-size: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: var(--rule) solid var(--ink);
+  background-color: var(--paper);
+}
+
+#certs .cert__actions {
+  margin-block-start: auto;
+  padding-block-start: var(--space-2xs);
+}
+
+/* --------------------------------------------------------------------------
+   404
+   -------------------------------------------------------------------------- */
+
+#notfound .notfound__code {
+  display: inline-block;
+  padding: var(--space-2xs) var(--space-sm);
+  background-color: var(--sun);
+  color: var(--on-sun);
+  border: var(--rule) solid var(--ink);
+}

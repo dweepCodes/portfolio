@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-112 -112 224 224" role="img" aria-label="Emerald icosahedron mark">
+  <title>Dweep Shishodia</title>
+  <!-- Colours are literal here because a favicon is fetched outside the
+       page and cannot read tokens.css. They are --paper, --emerald and
+       --ink; keep them in step with that file. -->
+  <rect x="-112" y="-112" width="224" height="224" fill="#F6F7F5"/>
+  <g stroke="#0A0A0A" stroke-width="14" stroke-linejoin="miter">
+    <!-- An icosahedron seen down a five-fold axis: a decagon rim with two
+         interlocking pentagons. The spokes are dropped at this size. -->
+    <polygon fill="#17BE85"
+             points="0,-92 54.08,-74.43 87.5,-28.43 87.5,28.43 54.08,74.43 0,92 -54.08,74.43 -87.5,28.43 -87.5,-28.43 -54.08,-74.43"/>
+    <polygon fill="none" points="0,-92 87.5,-28.43 54.08,74.43 -54.08,74.43 -87.5,-28.43"/>
+    <polygon fill="none" points="54.08,-74.43 87.5,28.43 0,92 -87.5,28.43 -54.08,-74.43"/>
+  </g>
+</svg>

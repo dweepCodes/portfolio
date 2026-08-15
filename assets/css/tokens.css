@@ -1,0 +1,192 @@
+/* ==========================================================================
+   tokens.css — dweep-portfolio
+   The ONLY file in this repo where a color, a font, a font-size, or a
+   structural constant may be written as a literal value.
+   Everything else references these custom properties.
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------
+     COLOR — six values, no others.
+     Inherited from the matri6.com identity.
+     ------------------------------------------------------------------ */
+  --ink:     #0A0A0A;   /* borders, type, dark section background        */
+  --paper:   #F6F7F5;   /* page background                               */
+  --emerald: #17BE85;   /* matri6 primary — hero object, primary blocks  */
+  --blue:    #1F4BFF;   /* secondary blocks                              */
+  --coral:   #FF5A3C;   /* accents, active / hover states                */
+  --sun:     #FFC93C;   /* highlights, numbers                           */
+
+  /* ------------------------------------------------------------------
+     CONTRAST PAIRS — measured, not guessed.
+       ink on paper .... 18.4:1     paper on ink ..... 18.4:1
+       ink on emerald ... 8.2:1     ink on sun ....... 12.9:1
+       ink on coral ..... 6.4:1     paper on blue ..... 5.6:1
+
+     Blue is the one block that CANNOT carry ink text (3.3:1), and sun on
+     blue is worse (3.5:1) — so numbered glyphs on blue use paper too.
+     The five saturated colors are BLOCK colors, not text colors: emerald
+     text on paper is 2.2:1 and coral text on paper is 2.9:1. If you want
+     an accent to speak, give it a background, never a color.
+     ------------------------------------------------------------------ */
+  --on-paper:   var(--ink);
+  --on-ink:     var(--paper);
+  --on-emerald: var(--ink);
+  --on-coral:   var(--ink);
+  --on-sun:     var(--ink);
+  --on-blue:    var(--paper);
+
+  /* ------------------------------------------------------------------
+     TYPE — families
+     Archivo is variable on both wght and wdth: one family, two opposite
+     personalities (condensed-heavy headlines, wide-tracked wordmark).
+     ------------------------------------------------------------------ */
+  --font-display: 'Archivo', system-ui, sans-serif;
+  --font-body:    'Inter Tight', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+
+  /* Width axis, expressed as font-stretch percentages rather than
+     font-variation-settings — font-stretch degrades to a real condensed /
+     expanded face (or a sane approximation) when Archivo never loads,
+     font-variation-settings is simply dropped by the fallback. */
+  --wdth-display:  75%;    /* h1 / h2 — condensed                        */
+  --wdth-subhead:  85%;    /* h3 / card titles                           */
+  --wdth-wordmark: 110%;   /* DWEEP SHISHODIA lockup                     */
+
+  --wght-display: 900;
+  --wght-subhead: 800;
+  --wght-wordmark: 700;
+  --wght-bold: 700;
+
+  /* ------------------------------------------------------------------
+     TYPE — fluid scale
+     ------------------------------------------------------------------ */
+  /* Measured against the real headline, not chosen in the abstract: the
+     longest line ("I build the second kind.") costs 11.43px of width per
+     pixel of font size in Archivo at wdth 75 / wght 900, once the word gap
+     below is applied. At the 11vw / 9rem the design system originally called
+     for, that line wraps at every width above 768px. This clamp is the
+     largest that keeps all three lines unbroken from 768px up, and lets them
+     wrap on phones, where they should. Re-measure it if the tracking, the
+     word spacing, or the headline copy changes — all three move the ratio. */
+  --fs-display:     clamp(3rem, 7.4vw, 7rem);
+  --fs-h2:          clamp(2rem, 6vw, 4.5rem);
+  --fs-h3:          1.5rem;
+  --fs-quote:       clamp(1.75rem, 5.5vw, 4rem);
+  --fs-lead:        clamp(1.125rem, 2.2vw, 1.5rem);
+  --fs-body:        1.0625rem;
+  --fs-small:       0.9375rem;
+  --fs-micro:       0.75rem;
+  --fs-number:      clamp(1.75rem, 4.5vw, 3rem);   /* 01 / 02 markers    */
+  --fs-wordmark:    clamp(0.75rem, 1.4vw, 1rem);
+  /* The footer lockup carries 0.5em tracking, so each character costs
+     ~1.1em of width. Sized to fit 15 characters inside the 320px gutter
+     without wrapping, and inside the 1440px container at the top end. */
+  --fs-wordmark-xl: clamp(1rem, 4.9vw, 4.75rem);
+
+  /* ------------------------------------------------------------------
+     TYPE — rhythm
+     ------------------------------------------------------------------ */
+  /* 0.95, not the 0.88 this started at: at wdth 75 the cap heights are tall
+     enough that sub-1 leading makes consecutive display lines collide. The
+     separation between headline lines is then set by explicit margins, so
+     leading and rhythm are two knobs instead of one overloaded one. */
+  --lh-display: 0.95;
+  --lh-heading: 0.95;
+  --lh-tight:   1.2;
+  --lh-body:    1.6;
+
+  --track-display:  -0.015em;
+  --track-heading:  -0.01em;
+  --track-body:      0em;
+  --track-micro:     0.18em;
+  --track-wordmark:  0.5em;
+  /* Narrow screens only. "DWEEP SHISHODIA" at 0.5em tracking is 218px, which
+     is most of a 320px content box — one longer word from clipping. */
+  --track-wordmark-tight: 0.28em;
+
+  /* Condensed display type has a condensed space glyph, and the negative
+     tracking above is then subtracted from it again. Measured, the word gap
+     came out at 0.109em against body copy's 0.233em — less than half. This
+     puts it back without loosening the letterfit. */
+  --track-word-display: 0.09em;
+
+  /* ------------------------------------------------------------------
+     STRUCTURE
+     ------------------------------------------------------------------ */
+  --rule:       3px;   /* standard border                                */
+  --rule-thick: 6px;   /* section dividers                               */
+  --radius:     0;     /* never change this                              */
+  --offset:     14px;  /* hard neubrutalist drop-shadow offset           */
+  --offset-sm:  8px;   /* same idea, smaller elements                    */
+  --stroke-svg: 6;     /* unitless — SVG stroke-width on the hero mark   */
+
+  /* ------------------------------------------------------------------
+     SPACE
+     ------------------------------------------------------------------ */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs:  0.75rem;
+  --space-sm:  1rem;
+  --space-md:  1.5rem;
+  --space-lg:  2rem;
+  --space-xl:  3rem;
+  --space-2xl: 4.5rem;
+  --space-3xl: 7rem;
+
+  --gutter:    clamp(1.25rem, 5vw, 4rem);   /* page side padding         */
+  --section-y: clamp(3.5rem, 9vw, 7rem);    /* vertical section rhythm   */
+  --maxw:      1440px;                      /* content container         */
+  --measure:   62ch;                        /* readable line length      */
+  --nav-h:     3.75rem;
+  --hero-min:  clamp(15rem, 46vw, 30rem);   /* 3D object stage           */
+  --hero-stage-max: 32rem;                  /* stage ceiling             */
+  /* Clearance between the nav rule and the first thing in the hero.
+     Viewport-height based, because on a short laptop screen a fixed slab
+     of padding pushes the headline itself below the fold. */
+  --hero-top:  clamp(3rem, 8vh, 6rem);
+  --col-number: clamp(2.5rem, 8vw, 4.5rem); /* ordinal marker column     */
+
+  /* ------------------------------------------------------------------
+     MOTION — nothing loops except the hero rotation.
+     ------------------------------------------------------------------ */
+  --dur-fast: 180ms;   /* accordion open / close, hover states           */
+  --dur-mid:  320ms;
+  --dur-slow: 700ms;   /* hero load sequence, scroll reveals             */
+  --stagger:  90ms;    /* per-line delay in the hero headline            */
+  --ease:     cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --tilt-max: 8deg;    /* card tilt ceiling — read by tilt.js            */
+  --lift:     3px;     /* hover nudge on pressable blocks                */
+
+  /* ------------------------------------------------------------------
+     PRINT — true black on true white. The screen palette is deliberately
+     off-black / off-white, which wastes toner and greys the type.
+     ------------------------------------------------------------------ */
+  --print-ink:   #000000;
+  --print-paper: #FFFFFF;
+
+  /* ------------------------------------------------------------------
+     LAYERS
+     ------------------------------------------------------------------ */
+  --z-base:   0;
+  --z-raised: 1;
+  --z-nav:    50;
+  --z-skip:   100;
+}
+
+/* Reduced motion is a global kill switch, not a per-component opt-out.
+   Collapsing the tokens disables every CSS transition and animation that
+   is built from them; base.css adds a `*` backstop for anything else, and
+   hero3d.js / tilt.js carry their own matchMedia listeners because a
+   requestAnimationFrame loop cannot be stopped by CSS. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 1ms;
+    --dur-mid:  1ms;
+    --dur-slow: 1ms;
+    --stagger:  0ms;
+    --tilt-max: 0deg;
+    --lift:     0px;
+  }
+}
