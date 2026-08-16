@@ -55,7 +55,8 @@ assets/
   js/
     main.js                 entry; wraps every init() in try/catch
     hero3d.js               three.js scene (lazy, self-contained, fails silently)
-    tilt.js                 pointer tilt on project rows and cert cards
+    nav.js                  scroll-spy; marks the nav link being read
+    tilt.js                 pointer tilt on project rows
     accordion.js            animated single-open over <details>
     reveal.js               one-time IntersectionObserver reveals
   img/

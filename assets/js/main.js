@@ -7,6 +7,7 @@
  * the page. The site is fully readable before any of this runs.
  */
 
+import { initNav } from './nav.js';
 import { initReveal } from './reveal.js';
 import { initAccordion } from './accordion.js';
 import { initTilt } from './tilt.js';
@@ -32,6 +33,7 @@ function boot(name, init) {
   }
 }
 
+boot('nav', initNav);
 boot('reveal', initReveal);
 boot('accordion', initAccordion);
 boot('tilt', initTilt);

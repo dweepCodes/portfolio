@@ -276,81 +276,113 @@
 
     <!-- ================================================================
          CERTIFICATIONS — proof, sitting directly under the skills claim it
-         backs and ahead of the work. Numbered because the list is ordered
-         by weight, not alphabetically.
+         backs and ahead of the work. Ordered by weight, not alphabetically.
+
+         The cards are the same .card .cert blocks that used to live on
+         certifications.html: label colour, meta, body copy and verify
+         button unchanged. Only the section header differs, because a page
+         title and a section header are not the same job.
 
          There is no build step and no fetch() in this repo, so the data
-         lives in the markup rather than in a JS array. Every card is one
-         <li class="cert-card"> and the fields map one to one:
-
-           id            → .cert-card__num           01, 02, …
-           issuer        → .cert-card__issuer
-           title         → .cert-card__title         two lines maximum
-           date          → .cert-card__date
-           credentialUrl → .cert-card__verify [href] delete the whole
-                           <p class="cert-card__actions"> when there is
-                           nothing to verify — a dead verify link is worse
-                           than no button.
-
-         The colour modifier cycles blue → coral → sun → emerald, which is
-         what keeps two neighbours from matching at one, two, or three
-         columns. Copy-paste template at the end of the list.
+         lives in the markup. Every entry is one <li class="card cert">.
+         Drop cert__actions when a credential has nothing to verify — a
+         dead verify link is worse than no button. Copy-paste template at
+         the end of the list.
          ================================================================ -->
     <section id="certifications" class="band" aria-labelledby="certifications-title">
       <div class="wrap">
         <header class="section-head" data-reveal>
           <p class="section-head__eyebrow t-micro">// Credentials</p>
-          <h2 id="certifications-title" class="certs__title">Certifications</h2>
+          <h2 id="certifications-title">Certifications</h2>
+          <p class="section-head__sub t-lead">
+            Competition results, coursework, and issued certificates — with a
+            verification link wherever one exists.
+          </p>
         </header>
 
-        <ul class="certs__grid" data-reveal>
+        <ul class="grid" data-reveal>
 
-          <!-- 01 ------------------------------------------------------- -->
-          <li class="cert-card cert-card--blue offset--sm">
-            <p class="cert-card__num t-number" aria-hidden="true">01</p>
-            <p class="cert-card__issuer t-micro">Paradox, IIT Madras</p>
-            <h3 class="cert-card__title t-h3">Runner-Up — Compassion-a-thon 3.0</h3>
-            <p class="cert-card__date t-micro">2026</p>
+          <li class="card cert offset--sm">
+            <p class="card__label card__label--sun t-micro">Award</p>
+            <h3 class="t-h3">Runner-Up — Compassion-a-thon 3.0</h3>
+            <p class="cert__meta t-micro">
+              <span>Paradox, IIT Madras</span>
+              <span>2026</span>
+            </p>
+            <p class="cert__body">
+              Startup prototype competition, second position for Paleskies. Judged
+              on problem clarity, solution feasibility, and market potential.
+            </p>
+            <!-- Drop the photo in at assets/img/certs/compassionathon.jpg and
+                 uncomment:
+            <img class="cert__thumb" src="assets/img/certs/compassionathon.jpg"
+                 alt="Runner-up certificate for Compassion-a-thon 3.0 at Paradox, IIT Madras."
+                 width="800" height="600" loading="lazy" decoding="async">
+            -->
           </li>
 
-          <!-- 02 ------------------------------------------------------- -->
-          <li class="cert-card cert-card--coral offset--sm">
-            <p class="cert-card__num t-number" aria-hidden="true">02</p>
-            <p class="cert-card__issuer t-micro">Anthropic Academy</p>
-            <h3 class="cert-card__title t-h3">Claude Code 101</h3>
-            <p class="cert-card__date t-micro">Issued 13 May 2026</p>
-            <p class="cert-card__actions">
-              <a class="btn cert-card__verify" href="https://verify.skilljar.com/c/eu7ejbdvshyd"
-                 target="_blank" rel="noopener">Verify →</a>
+          <li class="card cert offset--sm">
+            <p class="card__label card__label--emerald t-micro">Certificate</p>
+            <h3 class="t-h3">Claude Code 101</h3>
+            <p class="cert__meta t-micro">
+              <span>Anthropic Academy</span>
+              <span>Issued 13 May 2026</span>
+            </p>
+            <p class="cert__body">
+              Course on building with Claude Code — agentic workflows, tool use,
+              and shipping real software with an AI coding agent.
+            </p>
+            <!-- Drop the certificate image in at
+                 assets/img/certs/claude-code-101.png and uncomment:
+            <img class="cert__thumb" src="assets/img/certs/claude-code-101.png"
+                 alt="Claude Code 101 certificate issued by Anthropic Academy."
+                 width="800" height="600" loading="lazy" decoding="async">
+            -->
+            <p class="cert__actions">
+              <a class="btn offset--sm" href="https://verify.skilljar.com/c/eu7ejbdvshyd" rel="noopener">Verify ↗</a>
             </p>
           </li>
 
-          <!-- 03 ------------------------------------------------------- -->
-          <li class="cert-card cert-card--sun offset--sm">
-            <p class="cert-card__num t-number" aria-hidden="true">03</p>
-            <p class="cert-card__issuer t-micro">IIT Madras</p>
-            <h3 class="cert-card__title t-h3">Foundational Level — BS Data Science</h3>
-            <p class="cert-card__date t-micro">24 credits · CGPA 8.0</p>
+          <li class="card cert offset--sm">
+            <p class="card__label card__label--blue t-micro">Coursework</p>
+            <h3 class="t-h3">Foundational Level — BS Data Science</h3>
+            <p class="cert__meta t-micro">
+              <span>IIT Madras</span>
+              <span>24 credits completed</span>
+            </p>
+            <p class="cert__body">
+              Foundational Level of the BS in Data Science and Applications
+              complete, at a CGPA of 8.0. Currently in the second year of the
+              programme.
+            </p>
           </li>
 
-          <!-- ==========================================================
+          <!-- ============================================================
                TEMPLATE — copy this block, fill it in, delete the comment
-               markers, and continue the colour cycle: blue → coral → sun
-               → emerald → blue. Drop cert-card__actions if the credential
-               has no verification URL.
+               markers. Label colour options: --sun, --emerald, --blue,
+               --coral, --ink (see .card__label-- modifiers in
+               components.css). Drop cert__actions if there is nothing to
+               verify; drop cert__thumb if there is no image.
 
-          <li class="cert-card cert-card--emerald offset--sm">
-            <p class="cert-card__num t-number" aria-hidden="true">04</p>
-            <p class="cert-card__issuer t-micro">Issuing body</p>
-            <h3 class="cert-card__title t-h3">Title of the credential</h3>
-            <p class="cert-card__date t-micro">Issued Month Year</p>
-            <p class="cert-card__actions">
-              <a class="btn cert-card__verify" href="https://example.com/verify"
-                 target="_blank" rel="noopener">Verify →</a>
+          <li class="card cert offset--sm">
+            <p class="card__label card__label--coral t-micro">Certificate</p>
+            <h3 class="t-h3">Title of the credential</h3>
+            <p class="cert__meta t-micro">
+              <span>Issuing body</span>
+              <span>Issued Month Year</span>
+            </p>
+            <p class="cert__body">
+              One or two sentences on what it covered and why it counts.
+            </p>
+            <img class="cert__thumb" src="assets/img/certs/file-name.png"
+                 alt="Describe what the certificate shows."
+                 width="800" height="600" loading="lazy" decoding="async">
+            <p class="cert__actions">
+              <a class="btn offset--sm" href="https://example.com/verify" rel="noopener">Verify ↗</a>
             </p>
           </li>
 
-               ========================================================== -->
+               ============================================================ -->
 
         </ul>
       </div>

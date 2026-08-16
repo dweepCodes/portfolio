@@ -52,6 +52,7 @@ dweep-portfolio/
     │   └── pages.css           # section-specific layout (index + certs)
     ├── js/
     │   ├── main.js             # entry: imports and inits everything
+    │   ├── nav.js              # scroll-spy: aria-current on the nav link
     │   ├── hero3d.js           # three.js scene (self-contained, fails silently)
     │   ├── tilt.js             # mouse-tracked CSS 3D tilt on cards
     │   ├── accordion.js        # progressive enhancement over <details>
@@ -280,17 +281,24 @@ fails is worse than no form.
 ### 5.8 Certifications — `#certifications`, between Skills and Projects
 
 Sits directly after the skills grid so it reads as proof of the claim above it.
-Mono eyebrow `// CREDENTIALS`, then **CERTIFICATIONS** set to run the full
-container width (`--fs-certhead`). Below that a grid of `.cert-card` blocks:
-3 columns from 960px, 2 from 640px, 1 below that.
+Header follows the pattern every other section on the page uses — mono eyebrow
+`// CREDENTIALS` (no square marker: the `//` is the marker), an ordinary `h2`
+headline **Certifications** sitting level with SKILLS and PROJECTS, and a
+one-line `.section-head__sub`:
 
-Each card: ordinal (mono, matching Projects), issuer (mono uppercase), title
-(condensed bold, clamped to 2 lines), date, and a `Verify →` button where a
-credential URL exists. Fills cycle blue → coral → sun → emerald so no two
-neighbours match at any column count. Hover presses the block 6px into its own
-shadow, which collapses 8px → 2px; pointer tilt runs at `--tilt-max-soft`
-(6deg), half the ceiling the project rows use. Under `prefers-reduced-motion`
-both collapse to a border-colour change only.
+> Competition results, coursework, and issued certificates — with a
+> verification link wherever one exists.
+
+Below that the same `.card .cert` blocks that used to live on the standalone
+page, in a `.grid` at `--col: 20rem` — 3 columns wide, 2 mid, 1 on mobile.
+
+Each card: a colour-chip category label (`Award` sun, `Certificate` emerald,
+`Coursework` blue), title, a mono meta row (issuer · date), two sentences of
+body copy, an optional `cert__thumb` image, and a `Verify ↗` button where a
+credential URL exists — pinned to the card bottom so a row shares one baseline.
+No ordinals: the list is ordered by weight, and numbering is reserved for
+Projects and Process. No tilt and no press state; the cards carry the standard
+`.offset--sm` silhouette like the skills grid.
 
 Real entries, ordered by weight:
 
@@ -299,10 +307,10 @@ Real entries, ordered by weight:
    Verify: `https://verify.skilljar.com/c/eu7ejbdvshyd`
 3. **Foundational Level — BS Data Science** · IIT Madras · 24 credits · CGPA 8.0 — no verify URL
 
-A commented copy-paste template closes the list; a fourth entry continues the
-colour cycle at emerald.
+A commented copy-paste template closes the list.
 
-There is no separate certifications page; `certifications.html` was removed.
+There is no separate certifications page; `certifications.html` was removed and
+nothing is left at that path — `404.html` catches the old URL.
 
 ---
 

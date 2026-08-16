@@ -196,23 +196,36 @@
    SKILLS — a set, not a sequence: mono category labels, no numbers.
    -------------------------------------------------------------------------- */
 
+/* Six cards, so the column count is fixed rather than left to auto-fit:
+   17rem tracks fit four across a wide container, which leaves a ragged
+   4 + 2. Three and three reads as one block. Grid items stretch by
+   default, so a row is as tall as its tallest card — GenAI / NLP carries
+   the longest list and sets the height of the row it sits in, nothing
+   more. .grid owns the gap; only the tracks change here. */
 #skills .grid {
-  --col: 17rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 40rem) {
+  #skills .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 60rem) {
+  #skills .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 /* --------------------------------------------------------------------------
    CERTIFICATIONS — proof, sitting between the claim (skills) and the work
-   (projects). Numbered because the list is ordered by weight.
-   -------------------------------------------------------------------------- */
+   (projects). Ordered by weight, not alphabetically.
 
-/* The one headline outside the hero that runs the full container width.
-   "CERTIFICATIONS" is a single unbreakable word, so it is sized rather than
-   wrapped — see --fs-certhead in tokens.css for the measurement. */
-#certifications .certs__title {
-  font-size: var(--fs-certhead);
-  line-height: var(--lh-display);
-  letter-spacing: var(--track-display);
-}
+   Same .card .cert block that used to live on certifications.html; the
+   headline takes the ordinary h2 step so it sits level with SKILLS and
+   PROJECTS instead of dominating them.
+   -------------------------------------------------------------------------- */
 
 /* The `//` in the eyebrow is this section's marker, so the square block
    every other eyebrow carries would be a second one. */
@@ -220,28 +233,52 @@
   content: none;
 }
 
-/* Column counts are explicit rather than auto-fit: the design calls for
-   3 / 2 / 1 exactly, and auto-fit would drop to two columns early on a
-   narrow desktop window. The perspective lives here so tilt.js only ever
-   writes rotateX / rotateY, matching the accordion. */
-#certifications .certs__grid {
-  display: grid;
+/* Explicit tracks, matching the skills grid above: three entries against
+   an auto-fit track size drop to a ragged 2 + 1 on a narrow desktop
+   window. 3 / 2 / 1 exactly. .grid owns the gap. */
+#certifications .grid {
   grid-template-columns: minmax(0, 1fr);
-  gap: var(--space-md);
-  perspective: 60rem;
 }
 
 @media (min-width: 40rem) {
-  #certifications .certs__grid {
+  #certifications .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 60rem) {
-  #certifications .certs__grid {
+  #certifications .grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-lg);
   }
+}
+
+#certifications .cert {
+  gap: var(--space-sm);
+}
+
+#certifications .cert__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3xs) var(--space-sm);
+}
+
+#certifications .cert__body {
+  max-width: var(--measure);
+}
+
+#certifications .cert__thumb {
+  inline-size: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: var(--rule) solid var(--ink);
+  background-color: var(--paper);
+}
+
+/* Pins the verify button to the bottom of the card whatever the body copy
+   above it did, so a row of cards shares one baseline of buttons. */
+#certifications .cert__actions {
+  margin-block-start: auto;
+  padding-block-start: var(--space-2xs);
 }
 
 /* --------------------------------------------------------------------------
