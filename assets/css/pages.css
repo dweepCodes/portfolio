@@ -201,6 +201,50 @@
 }
 
 /* --------------------------------------------------------------------------
+   CERTIFICATIONS — proof, sitting between the claim (skills) and the work
+   (projects). Numbered because the list is ordered by weight.
+   -------------------------------------------------------------------------- */
+
+/* The one headline outside the hero that runs the full container width.
+   "CERTIFICATIONS" is a single unbreakable word, so it is sized rather than
+   wrapped — see --fs-certhead in tokens.css for the measurement. */
+#certifications .certs__title {
+  font-size: var(--fs-certhead);
+  line-height: var(--lh-display);
+  letter-spacing: var(--track-display);
+}
+
+/* The `//` in the eyebrow is this section's marker, so the square block
+   every other eyebrow carries would be a second one. */
+#certifications .section-head__eyebrow::before {
+  content: none;
+}
+
+/* Column counts are explicit rather than auto-fit: the design calls for
+   3 / 2 / 1 exactly, and auto-fit would drop to two columns early on a
+   narrow desktop window. The perspective lives here so tilt.js only ever
+   writes rotateX / rotateY, matching the accordion. */
+#certifications .certs__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-md);
+  perspective: 60rem;
+}
+
+@media (min-width: 40rem) {
+  #certifications .certs__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 60rem) {
+  #certifications .certs__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-lg);
+  }
+}
+
+/* --------------------------------------------------------------------------
    PROJECTS — numbered in reverse chronological order; the number encodes
    the timeline, which is why the date sits beside it.
    -------------------------------------------------------------------------- */
@@ -282,7 +326,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   PAGE HEAD — certifications.html and 404.html
+   PAGE HEAD — 404.html
    -------------------------------------------------------------------------- */
 
 #page-head {
@@ -290,9 +334,8 @@
   padding-block-end: var(--section-y);
 }
 
-/* Secondary pages take the h2 step, not the display step: "Certifications"
-   is a 14-character unbreakable word that overflows a 320px screen at the
-   display size. Still the largest thing on the page. */
+/* Secondary pages take the h2 step, not the display step: they are not the
+   hero, and the h1 here is still the largest thing on the page. */
 #page-head h1 {
   font-size: var(--fs-h2);
 }
@@ -306,41 +349,6 @@
 
 #page-head .page-head__sub {
   max-width: var(--measure);
-}
-
-/* --------------------------------------------------------------------------
-   CERTIFICATIONS
-   -------------------------------------------------------------------------- */
-
-#certs .grid {
-  --col: 20rem;
-}
-
-#certs .cert {
-  gap: var(--space-sm);
-}
-
-#certs .cert__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3xs) var(--space-sm);
-}
-
-#certs .cert__body {
-  max-width: var(--measure);
-}
-
-#certs .cert__thumb {
-  inline-size: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border: var(--rule) solid var(--ink);
-  background-color: var(--paper);
-}
-
-#certs .cert__actions {
-  margin-block-start: auto;
-  padding-block-start: var(--space-2xs);
 }
 
 /* --------------------------------------------------------------------------

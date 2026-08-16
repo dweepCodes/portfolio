@@ -41,8 +41,7 @@ behaviour with no script at all.
 ## Structure
 
 ```
-index.html                  main portfolio page
-certifications.html         certifications & achievements
+index.html                  the whole portfolio — one page, one URL
 404.html                    uses root-absolute asset paths
 robots.txt · sitemap.xml
 assets/
@@ -50,19 +49,21 @@ assets/
     tokens.css              every colour, font, size and constant — the only file
                             allowed to contain a literal value
     base.css                reset, type scale, layout primitives, focus, print
-    components.css          nav, buttons, tags, cards, accordion row, footer
+    components.css          nav, buttons, tags, cards, cert cards, accordion
+                            row, footer
     pages.css               section layout, each selector scoped to its id
   js/
     main.js                 entry; wraps every init() in try/catch
     hero3d.js               three.js scene (lazy, self-contained, fails silently)
-    tilt.js                 pointer tilt on project rows
+    tilt.js                 pointer tilt on project rows and cert cards
     accordion.js            animated single-open over <details>
     reveal.js               one-time IntersectionObserver reveals
   img/
     favicon.svg
     og-cover.png            1200×630 social card
     make-og-cover.ps1       regenerates og-cover.png
-    certs/                  certificate thumbnails (see "Still to add")
+    certs/                  certificate scans — unused by the current card
+                            design, kept for a future thumbnail variant
 ```
 
 ### The two rules that keep it coherent
@@ -97,12 +98,11 @@ All three serve `404.html` automatically for unmatched routes.
 ### Before the first deploy
 
 The canonical host is assumed to be **`https://dweep.matri6.com`**. If it lands
-somewhere else, change it in four places:
+somewhere else, change it in three places:
 
 - `index.html` — `<link rel="canonical">`, `og:url`, `og:image`, `twitter:image`
-- `certifications.html` — the same five tags
 - `robots.txt` — the `Sitemap:` line
-- `sitemap.xml` — both `<loc>` values
+- `sitemap.xml` — the `<loc>` value
 
 ---
 
@@ -112,15 +112,12 @@ Placeholders are not allowed in this repo, so anything without real content was
 left out rather than faked. Each item below has a commented-out block sitting
 exactly where it belongs.
 
-- **Certificate images.** `assets/img/certs/compassionathon.jpg` and
-  `assets/img/certs/claude-code-101.png`. Drop the files in and uncomment the
-  `<img class="cert__thumb">` block in the matching card in `certifications.html`.
+- **A fourth certification** is a copy-paste of the template comment at the end
+  of the `#certifications` list in `index.html`.
 - **Project URLs.** AgroNav's live app, AutoVal's live app and repository, and
   SmartCart's repository. Each row in `index.html` has a commented `row__links`
   block with the markup ready. Until then the projects section links to the
   GitHub profile as a whole, so no link on the page is dead.
-- **A fourth certification** is a copy-paste of the template comment at the end of
-  the list in `certifications.html`.
 
 ## Regenerating the social card
 

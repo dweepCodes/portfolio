@@ -79,6 +79,14 @@
   --fs-micro:       0.75rem;
   --fs-number:      clamp(1.75rem, 4.5vw, 3rem);   /* 01 / 02 markers    */
   --fs-wordmark:    clamp(0.75rem, 1.4vw, 1rem);
+  /* The certifications headline is a single 14-character word set to run the
+     full container width. Measured, "CERTIFICATIONS" costs 7.02em at Archivo
+     wdth 75 / wght 900. The binding case is 320px, where --gutter has
+     bottomed out at its 1.25rem floor and so eats a much larger share of the
+     line than the 5vw it takes at every wider size: 11.5vw fills 97% of the
+     box there and 91-96% from 768px up. Re-measure if the word, the width
+     axis, or --gutter changes — a longer word overflows before it wraps. */
+  --fs-certhead:    clamp(2rem, 11.5vw, 11.2rem);
   /* The footer lockup carries 0.5em tracking, so each character costs
      ~1.1em of width. Sized to fit 15 characters inside the 320px gutter
      without wrapping, and inside the 1440px container at the top end. */
@@ -119,6 +127,12 @@
   --radius:     0;     /* never change this                              */
   --offset:     14px;  /* hard neubrutalist drop-shadow offset           */
   --offset-sm:  8px;   /* same idea, smaller elements                    */
+  /* Pressed state: the shadow collapses from --offset-sm to this while the
+     block travels the difference, so the block appears to sink into its own
+     silhouette rather than to move. --press must equal
+     --offset-sm minus --offset-press or the illusion breaks. */
+  --offset-press: 2px;
+  --press:        6px;
   --stroke-svg: 6;     /* unitless — SVG stroke-width on the hero mark   */
 
   /* ------------------------------------------------------------------
@@ -156,7 +170,11 @@
   --stagger:  90ms;    /* per-line delay in the hero headline            */
   --ease:     cubic-bezier(0.2, 0.7, 0.2, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --tilt-max: 8deg;    /* card tilt ceiling — read by tilt.js            */
+  --tilt-max: 8deg;    /* project row tilt ceiling — read by tilt.js     */
+  /* The certifications grid puts six tilting blocks on screen at once
+     where projects show one row at a time, so it runs at a lower ceiling —
+     eight degrees across a grid reads as noise, not as depth. */
+  --tilt-max-soft: 6deg;
   --lift:     3px;     /* hover nudge on pressable blocks                */
 
   /* ------------------------------------------------------------------
@@ -187,6 +205,12 @@
     --dur-slow: 1ms;
     --stagger:  0ms;
     --tilt-max: 0deg;
+    --tilt-max-soft: 0deg;
     --lift:     0px;
+    /* Collapsing these two is what disables the press: the block stops
+       travelling and its shadow stops shrinking, leaving the hover state as
+       a border-colour change alone. */
+    --press:        0px;
+    --offset-press: var(--offset-sm);
   }
 }

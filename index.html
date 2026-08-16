@@ -101,7 +101,7 @@
       <ul class="nav-links t-micro">
         <li><a href="#projects">Work</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="certifications.html" aria-label="Certifications and achievements">Certs</a></li>
+        <li><a href="#certifications" aria-label="Certifications and achievements">Certs</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -270,6 +270,88 @@
               <li>Supabase</li><li>AWS</li><li>Google Cloud</li><li>Render</li><li>Git</li>
             </ul>
           </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         CERTIFICATIONS — proof, sitting directly under the skills claim it
+         backs and ahead of the work. Numbered because the list is ordered
+         by weight, not alphabetically.
+
+         There is no build step and no fetch() in this repo, so the data
+         lives in the markup rather than in a JS array. Every card is one
+         <li class="cert-card"> and the fields map one to one:
+
+           id            → .cert-card__num           01, 02, …
+           issuer        → .cert-card__issuer
+           title         → .cert-card__title         two lines maximum
+           date          → .cert-card__date
+           credentialUrl → .cert-card__verify [href] delete the whole
+                           <p class="cert-card__actions"> when there is
+                           nothing to verify — a dead verify link is worse
+                           than no button.
+
+         The colour modifier cycles blue → coral → sun → emerald, which is
+         what keeps two neighbours from matching at one, two, or three
+         columns. Copy-paste template at the end of the list.
+         ================================================================ -->
+    <section id="certifications" class="band" aria-labelledby="certifications-title">
+      <div class="wrap">
+        <header class="section-head" data-reveal>
+          <p class="section-head__eyebrow t-micro">// Credentials</p>
+          <h2 id="certifications-title" class="certs__title">Certifications</h2>
+        </header>
+
+        <ul class="certs__grid" data-reveal>
+
+          <!-- 01 ------------------------------------------------------- -->
+          <li class="cert-card cert-card--blue offset--sm">
+            <p class="cert-card__num t-number" aria-hidden="true">01</p>
+            <p class="cert-card__issuer t-micro">Paradox, IIT Madras</p>
+            <h3 class="cert-card__title t-h3">Runner-Up — Compassion-a-thon 3.0</h3>
+            <p class="cert-card__date t-micro">2026</p>
+          </li>
+
+          <!-- 02 ------------------------------------------------------- -->
+          <li class="cert-card cert-card--coral offset--sm">
+            <p class="cert-card__num t-number" aria-hidden="true">02</p>
+            <p class="cert-card__issuer t-micro">Anthropic Academy</p>
+            <h3 class="cert-card__title t-h3">Claude Code 101</h3>
+            <p class="cert-card__date t-micro">Issued 13 May 2026</p>
+            <p class="cert-card__actions">
+              <a class="btn cert-card__verify" href="https://verify.skilljar.com/c/eu7ejbdvshyd"
+                 target="_blank" rel="noopener">Verify →</a>
+            </p>
+          </li>
+
+          <!-- 03 ------------------------------------------------------- -->
+          <li class="cert-card cert-card--sun offset--sm">
+            <p class="cert-card__num t-number" aria-hidden="true">03</p>
+            <p class="cert-card__issuer t-micro">IIT Madras</p>
+            <h3 class="cert-card__title t-h3">Foundational Level — BS Data Science</h3>
+            <p class="cert-card__date t-micro">24 credits · CGPA 8.0</p>
+          </li>
+
+          <!-- ==========================================================
+               TEMPLATE — copy this block, fill it in, delete the comment
+               markers, and continue the colour cycle: blue → coral → sun
+               → emerald → blue. Drop cert-card__actions if the credential
+               has no verification URL.
+
+          <li class="cert-card cert-card--emerald offset--sm">
+            <p class="cert-card__num t-number" aria-hidden="true">04</p>
+            <p class="cert-card__issuer t-micro">Issuing body</p>
+            <h3 class="cert-card__title t-h3">Title of the credential</h3>
+            <p class="cert-card__date t-micro">Issued Month Year</p>
+            <p class="cert-card__actions">
+              <a class="btn cert-card__verify" href="https://example.com/verify"
+                 target="_blank" rel="noopener">Verify →</a>
+            </p>
+          </li>
+
+               ========================================================== -->
+
         </ul>
       </div>
     </section>

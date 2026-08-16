@@ -7,7 +7,7 @@ Persistent context for this repo. Read fully before writing or changing code.
 ## 1. What this is
 
 Personal portfolio for **Dweep Shishodia** — ML engineer, BS Data Science @ IIT Madras,
-founder of **matri6**. Two static pages, no build step.
+founder of **matri6**. One static page (plus a 404), no build step.
 
 **Primary audience:** an IIT Madras professor receiving this by email, plus recruiters
 and internship reviewers. It must be visually distinctive *and* immediately legible.
@@ -40,8 +40,7 @@ Cloudflare Pages). Must work from a plain file server with no bundler.
 dweep-portfolio/
 ├── CLAUDE.md
 ├── README.md
-├── index.html                  # main portfolio page
-├── certifications.html         # certifications & achievements
+├── index.html                  # the whole portfolio — one page, one URL
 ├── 404.html
 ├── robots.txt
 ├── sitemap.xml
@@ -278,22 +277,32 @@ Wide-tracked `DWEEP SHISHODIA` wordmark at the bottom, mirroring matri6.com.
 **No form backend.** Use a single large `mailto:` button — a form that silently
 fails is worse than no form.
 
-### 5.8 certifications.html
+### 5.8 Certifications — `#certifications`, between Skills and Projects
 
-Same shell, same nav, page title **Certifications & Achievements**. Grid of cards,
-each with issuer, date, and a verify link where one exists.
+Sits directly after the skills grid so it reads as proof of the claim above it.
+Mono eyebrow `// CREDENTIALS`, then **CERTIFICATIONS** set to run the full
+container width (`--fs-certhead`). Below that a grid of `.cert-card` blocks:
+3 columns from 960px, 2 from 640px, 1 below that.
 
-1. **Runner-Up — Compassion-a-thon 3.0** · Paradox, IIT Madras · 2026
-   Startup prototype competition, second position for Paleskies. Judged on problem
-   clarity, solution feasibility, and market potential.
-   Image: `assets/img/certs/compassionathon.jpg`
-2. **Claude Code 101** · Anthropic Academy · Issued May 13, 2026
+Each card: ordinal (mono, matching Projects), issuer (mono uppercase), title
+(condensed bold, clamped to 2 lines), date, and a `Verify →` button where a
+credential URL exists. Fills cycle blue → coral → sun → emerald so no two
+neighbours match at any column count. Hover presses the block 6px into its own
+shadow, which collapses 8px → 2px; pointer tilt runs at `--tilt-max-soft`
+(6deg), half the ceiling the project rows use. Under `prefers-reduced-motion`
+both collapse to a border-colour change only.
+
+Real entries, ordered by weight:
+
+1. **Runner-Up — Compassion-a-thon 3.0** · Paradox, IIT Madras · 2026 — no verify URL
+2. **Claude Code 101** · Anthropic Academy · Issued 13 May 2026
    Verify: `https://verify.skilljar.com/c/eu7ejbdvshyd`
-   Image: `assets/img/certs/claude-code-101.png`
-3. **Foundational Level — BS Data Science** · IIT Madras · 24 credits completed · CGPA 8.0
+3. **Foundational Level — BS Data Science** · IIT Madras · 24 credits · CGPA 8.0 — no verify URL
 
-Build the card component so a fourth entry is a copy-paste of one block. Leave a
-commented template at the end of the list.
+A commented copy-paste template closes the list; a fourth entry continues the
+colour cycle at emerald.
+
+There is no separate certifications page; `certifications.html` was removed.
 
 ---
 
