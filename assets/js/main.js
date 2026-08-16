@@ -12,6 +12,7 @@ import { initReveal } from './reveal.js';
 import { initAccordion } from './accordion.js';
 import { initTilt } from './tilt.js';
 import { initHero3D } from './hero3d.js';
+import { initLastUpdated } from './last-updated.js';
 
 function report(name, error) {
   console.warn(
@@ -38,3 +39,4 @@ boot('reveal', initReveal);
 boot('accordion', initAccordion);
 boot('tilt', initTilt);
 boot('hero3d', initHero3D);
+boot('lastUpdated', initLastUpdated);
