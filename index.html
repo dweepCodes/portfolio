@@ -572,30 +572,40 @@
               <span class="row__main">
                 <span class="row__title t-h3">StockSense</span>
                 <span class="row__hook">
-                  Memory-efficient retail demand forecasting over 1.05M+ time-series
-                  records.
+                  Predicts daily sales for any of 1,115 Rossmann drug stores given
+                  store ID, date, promo status, and holiday flags, with optional
+                  recent sales history to improve accuracy.
                 </span>
                 <span class="row__meta">
-                  <span class="tag tag--data">Kaggle</span>
-                  <span class="tag tag--stack">Polars</span>
+                  <span class="tag tag--live">Live demo</span>
+                  <span class="tag tag--repo">Repository</span>
                   <span class="tag tag--stack">LightGBM</span>
                   <span class="tag tag--stack">Optuna</span>
+                  <span class="tag tag--stack">Polars</span>
+                  <span class="tag tag--stack">FastAPI</span>
+                  <span class="tag tag--stack">Pydantic</span>
+                  <span class="tag tag--stack">Chart.js</span>
+                  <span class="tag tag--stack">Render</span>
+                  <span class="tag tag--stack">GitHub Pages</span>
                 </span>
               </span>
               <span class="row__marker" aria-hidden="true"></span>
             </summary>
             <div class="row__body">
               <dl class="metrics">
-                <div class="metrics__item"><dt>RMSE</dt><dd>1288 → 647</dd></div>
-                <div class="metrics__item"><dt>Error cut</dt><dd>~50%</dd></div>
-                <div class="metrics__item"><dt>Records</dt><dd>1.05M+</dd></div>
+                <div class="metrics__item"><dt>RMSE</dt><dd>768.34</dd></div>
+                <div class="metrics__item"><dt>RMSPE</dt><dd>0.1198</dd></div>
               </dl>
               <ul class="row__bullets">
-                <li>Polars lazy evaluation kept 1.05M+ rows inside memory budget through the whole feature build.</li>
-                <li>Lag features, rolling statistics, and store-promo interactions did the work — the error halved before any exotic model was reached for.</li>
+                <li>Found and fixed a target-leakage bug where rolling means included the current row — shifting the window corrected RMSE from an inflated 641 to an honest 768.</li>
+                <li>Engineered 24 features — calendar, competition age, promo windows, per-store lag and rolling-mean sales — with a shared feature module across training and serving to eliminate train/serve skew.</li>
+                <li>Time-based train/validation split, no shuffle, respecting temporal ordering.</li>
+                <li>Graceful degradation: null lags on short history, 404 on an unknown store, 422 on a malformed payload.</li>
+                <li>Handled cold-start latency on free-tier hosting with a health-check pre-warm and a 75s client timeout.</li>
               </ul>
               <p class="row__links">
-                <a class="btn offset--sm" href="https://www.kaggle.com/dweepshishodia" rel="noopener">Kaggle profile ↗</a>
+                <a class="btn offset--sm" href="https://dweep1128.github.io/stock-sense-rossmann/" rel="noopener">Open the app ↗</a>
+                <a class="btn offset--sm" href="https://github.com/dweep1128/stock-sense-rossmann" rel="noopener">Source ↗</a>
               </p>
             </div>
           </details>
